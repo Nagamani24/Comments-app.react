@@ -42,7 +42,7 @@ class Comments extends Component {
   }
 
   onAddComment = event => {
-    const {name, comment} = this.state
+    const {name, comment, commentsList} = this.state
     event.preventDefault()
 
     const randValue = Math.ceil(
@@ -58,11 +58,13 @@ class Comments extends Component {
       date: new Date(),
       isLiked: false,
     }
+
     this.setState(prevState => ({
       commentsList: [...prevState.commentsList, newComment],
       name: '',
       comment: '',
     }))
+    localStorage.setItem('comments list', JSON.stringify(commentsList))
   }
 
   enterName = event => {
